@@ -40,28 +40,25 @@ void levelOrderTraversal(node *root)
 {
     queue<node *> q;
     q.push(root);
-
-    // cout << temp->data << /" ";
     q.push(NULL);
 
     while (!q.empty())
     {
         node *temp = q.front();
-        cout << temp->data << " ";
-        // cout << temp->data << " ";
         q.pop();
 
-        // if (temp == NULL)
-        // {
-        //     cout << endl;
-        //     if (!q.empty())
-        //     {
-        //         q.push(NULL);
-        //     }
-        // }
-        
+        if (temp == NULL) // purana level complete traverse ho chuka hai
+        {
+            cout << endl;
+            if (!q.empty()) // queue still has some child nodes
+            {
+                q.push(NULL);
+            }
+        }
+        else
+        {
 
-            // cout << temp->data << " ";
+            cout << temp->data << " ";
 
             if (temp->left)
             {
@@ -72,7 +69,7 @@ void levelOrderTraversal(node *root)
             {
                 q.push(temp->right);
             }
-        
+        }
     }
 }
 
@@ -82,7 +79,7 @@ int main()
 
     root = buildTree(root);
 
-
+    cout << "Printing the level order traversal output" << endl;
     levelOrderTraversal(root);
     return 0;
-}
+}  
